@@ -1,6 +1,6 @@
 import logging
 from data_loader import load_users_data, load_movies_data
-from recommender import UserRecommender
+from recommender import MLRecommender
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -17,19 +17,20 @@ def main():
 
         logger.info(f"Loaded {len(movies_df)} movies and {len(users_df)} users")
 
-        # Initialize recommender
-        recommender = UserRecommender(movies_df, users_df)
+        # Initialize and train recommender
+        recommender = MLRecommender(movies_df, users_df)
+        recommender.train()
         
         # Get recommendations for user 1
-        test_user_id = 2
+        test_user_id = 1
         recommendations = recommender.get_recommendations_for_user(test_user_id)
         
         if recommendations:
             print(f"\nTop movie recommendations for User {test_user_id}:")
-            for idx, (movie, score, genres) in enumerate(recommendations, 1):
-                print(f"{idx}. {movie}")
-                print(f"   Genres: {genres}")
-                print(f"   Relevance Score: {score:.3f}\n")
+            for idx, (movie, score, explanation) in enumerate(recommendations, 1):
+                print(f"\n{idx}. {movie}")
+                print(f"   Confidence Score: {score:.3f}")
+                print(f"   Recommendation Basis: {explanation}")
         else:
             print(f"No recommendations found for User {test_user_id}")
 
