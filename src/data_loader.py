@@ -31,6 +31,10 @@ def load_movies_data(file_path):
         
         if not all(col in df.columns for col in required_columns):
             raise ValueError(f"Missing required columns. Expected: {required_columns}")
+        
+        # Clean and process genre data
+        df['genre'] = df['genre'].fillna('')
+        df['metadata'] = df['metadata'].fillna('')
             
         return df
     except Exception as e:

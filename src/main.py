@@ -1,6 +1,6 @@
 import logging
 from data_loader import load_users_data, load_movies_data
-from recommender import HybridRecommender
+from recommender import UserRecommender
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,25 +18,20 @@ def main():
         logger.info(f"Loaded {len(movies_df)} movies and {len(users_df)} users")
 
         # Initialize recommender
-        recommender = HybridRecommender(movies_df, users_df)
+        recommender = UserRecommender(movies_df, users_df)
         
-        # Test recommendations for a specific user and movie
-        test_user_id = 1
-        test_movie = 'Movie E'
+        # Get recommendations for user 1
+        test_user_id = 2
+        recommendations = recommender.get_recommendations_for_user(test_user_id)
         
-        # Get personalized recommendations
-        user_recommendations = recommender.get_recommendations_for_user(test_user_id)
-        print(f"\nTop 3 recommendations for User {test_user_id}:")
-        if user_recommendations:
-            for idx, (movie, score) in enumerate(user_recommendations, 1):
-                print(f"{idx}. {movie} (relevance score: {score:.3f})")
-        
-        # Get similar movie recommendations
-        similar_movies = recommender.get_similar_movies(test_movie)
-        print(f"\nSimilar movies to '{test_movie}':")
-        if similar_movies:
-            for idx, (movie, score) in enumerate(similar_movies, 1):
-                print(f"{idx}. {movie} (similarity score: {score:.3f})")
+        if recommendations:
+            print(f"\nTop movie recommendations for User {test_user_id}:")
+            for idx, (movie, score, genres) in enumerate(recommendations, 1):
+                print(f"{idx}. {movie}")
+                print(f"   Genres: {genres}")
+                print(f"   Relevance Score: {score:.3f}\n")
+        else:
+            print(f"No recommendations found for User {test_user_id}")
 
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
