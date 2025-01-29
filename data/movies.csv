@@ -1,6 +1,6 @@
 movie_id,title,cast,genre,metadata
-101,Movie A,"Actor X, Actor Y",Action,"Fast-paced,Exciting"
-102,Movie B,"Actor Z, Actor W",Comedy,"Funny,Light"
-103,Movie C,"Actor X, Actor Z",Action,"Thrilling,Adventure"
-104,Movie D,"Actor Y, Actor W",Drama,"Emotional,Deep"
-105,Movie E,"Actor X, Actor W",Comedy,"Light-hearted,Fun"
+101,Movie A,"Actor X, Actor Y",Action,"Fast-paced exciting adventure with stunning visual effects"
+102,Movie B,"Actor Z, Actor W",Comedy,"Hilarious family-friendly comedy with heartwarming moments"
+103,Movie C,"Actor X, Actor Z",Action,"Thrilling action-packed story with intense sequences"
+104,Movie D,"Actor Y, Actor W",Drama,"Emotional journey exploring deep human connections"
+105,Movie E,"Actor X, Actor W",Comedy,"Light-hearted romantic comedy with witty dialogue"
